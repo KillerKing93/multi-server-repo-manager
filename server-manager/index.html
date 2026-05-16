@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Manager - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons for Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <i class='bx bx-server'></i>
+                <span>NexusPanel</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active"><i class='bx bx-home-alt'></i> Dashboard</a>
+                <a href="#" class="nav-item"><i class='bx bx-layer'></i> Microservices</a>
+                <a href="#" class="nav-item"><i class='bx bx-git-repo-forked'></i> Webhooks & Git</a>
+                <a href="#" class="nav-item"><i class='bx bx-data'></i> Databases</a>
+                <a href="#" class="nav-item"><i class='bx bx-cog'></i> Settings</a>
+            </nav>
+            <div class="server-info-badge">
+                <p class="server-ip">IP: 192.168.137.69</p>
+                <span class="status-dot green"></span> Online
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div>
+                    <h1>Welcome back, Admin</h1>
+                    <p class="subtitle">Here is what's happening with your Armbian Server today.</p>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">A</div>
+                </div>
+            </header>
+
+            <!-- Stats Overview -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon cpu"><i class='bx bx-chip'></i></div>
+                    <div class="stat-details">
+                        <h3>CPU Usage</h3>
+                        <div class="progress-bar"><div class="fill" style="width: 24%"></div></div>
+                        <p>24% of RK3318</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon ram"><i class='bx bx-memory-card'></i></div>
+                    <div class="stat-details">
+                        <h3>RAM Usage</h3>
+                        <div class="progress-bar"><div class="fill" style="width: 45%"></div></div>
+                        <p>1.8 GB / 4.0 GB</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon storage"><i class='bx bx-hdd'></i></div>
+                    <div class="stat-details">
+                        <h3>Storage</h3>
+                        <div class="progress-bar"><div class="fill" style="width: 32%"></div></div>
+                        <p>20.4 GB / 64.0 GB eMMC</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon network"><i class='bx bx-wifi'></i></div>
+                    <div class="stat-details">
+                        <h3>Network</h3>
+                        <p class="big-text">15 <small>Mbps</small></p>
+                        <p>Traffic IN/OUT</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="services-section">
+                <div class="section-header">
+                    <h2>Running Microservices</h2>
+                    <button class="btn btn-primary"><i class='bx bx-plus'></i> New Service</button>
+                </div>
+                
+                <div class="services-grid">
+                    <!-- Nginx Proxy -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <i class='bx bx-globe service-icon'></i>
+                            <div class="service-title">
+                                <h4>Nginx Reverse Proxy</h4>
+                                <span class="badge success">Running</span>
+                            </div>
+                            <div class="service-actions">
+                                <i class='bx bx-dots-vertical-rounded'></i>
+                            </div>
+                        </div>
+                        <p class="service-desc">Routes traffic to PHP and Node.js containers.</p>
+                        <div class="service-footer">
+                            <span>Port: 80</span>
+                            <button class="btn btn-icon"><i class='bx bx-refresh'></i></button>
+                        </div>
+                    </div>
+
+                    <!-- PHP Service -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <i class='bx bxl-php service-icon php'></i>
+                            <div class="service-title">
+                                <h4>PHP 8.2 FPM</h4>
+                                <span class="badge success">Running</span>
+                            </div>
+                            <div class="service-actions">
+                                <i class='bx bx-dots-vertical-rounded'></i>
+                            </div>
+                        </div>
+                        <p class="service-desc">Handles legacy backend API and data processing.</p>
+                        <div class="service-footer">
+                            <span>Port: 9000 (Internal)</span>
+                            <button class="btn btn-icon"><i class='bx bx-refresh'></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Node.js Service -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <i class='bx bxl-nodejs service-icon node'></i>
+                            <div class="service-title">
+                                <h4>Node.js API</h4>
+                                <span class="badge success">Running</span>
+                            </div>
+                            <div class="service-actions">
+                                <i class='bx bx-dots-vertical-rounded'></i>
+                            </div>
+                        </div>
+                        <p class="service-desc">Real-time sockets and fast asynchronous tasks.</p>
+                        <div class="service-footer">
+                            <span>Port: 3000 (Internal)</span>
+                            <button class="btn btn-icon"><i class='bx bx-refresh'></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Webhook Git -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <i class='bx bxl-github service-icon git'></i>
+                            <div class="service-title">
+                                <h4>Git Auto-Deploy</h4>
+                                <span class="badge success">Listening</span>
+                            </div>
+                            <div class="service-actions">
+                                <i class='bx bx-dots-vertical-rounded'></i>
+                            </div>
+                        </div>
+                        <p class="service-desc">Webhook listener for multi-server-repo-manager.</p>
+                        <div class="service-footer">
+                            <span>Last sync: 2 mins ago</span>
+                            <button class="btn btn-icon" onclick="triggerDeploy()"><i class='bx bx-download'></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

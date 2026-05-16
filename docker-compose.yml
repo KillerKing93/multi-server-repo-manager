@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./server-manager:/var/www/html
+    depends_on:
+      - webhook
+      - php-service
+      - node-service
+    restart: always
+
+  webhook:
+    build: ./webhook
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/app-repo
+    environment:
+      - GITHUB_SECRET=your_github_webhook_secret
+    restart: always
+
+  php-service:
+    image: php:8.2-fpm-alpine
+    volumes:
+      - ./php-app:/var/www/html
+    restart: always
+
+  node-service:
+    build: ./node-app
+    restart: always
