@@ -10,8 +10,12 @@ services:
     depends_on:
       - server-manager
       - webhook
-      - php-service
-      - node-service
+      - whatsapp-bot
+      - ai-tools
+      - rag-data-store
+      - puter-broker
+      - pihps-scraper
+      - rag-engine
     restart: always
 
   server-manager:
@@ -34,12 +38,46 @@ services:
       - GITHUB_SECRET=your_github_webhook_secret
     restart: always
 
-  php-service:
-    image: php:8.2-fpm-alpine
+  whatsapp-bot:
+    image: node:18-alpine
+    working_dir: /app
     volumes:
-      - ./php-app:/var/www/html
+      - ./services/whatsapp-bot:/app
+    command: sh -c "npm install && node src/index.js"
     restart: always
 
-  node-service:
-    build: ./node-app
+  ai-tools:
+    image: php:8.2-fpm-alpine
+    volumes:
+      - ./services/ai-tools:/var/www/html
+    restart: always
+
+  rag-data-store:
+    image: php:8.2-fpm-alpine
+    volumes:
+      - ./services/rag-data-store:/var/www/html
+    restart: always
+
+  puter-broker:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./services/puter-broker:/app
+    command: sh -c "npm install && npm start"
+    restart: always
+
+  pihps-scraper:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./services/pihps-scraper:/app
+    command: sh -c "npm install && npm start"
+    restart: always
+
+  rag-engine:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./services/rag-engine:/app
+    command: sh -c "npm install && npm start"
     restart: always
